@@ -1,5 +1,6 @@
 var express = require('express');
 var path = require('path');
+var dotenv = require('dotenv');
 var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
@@ -7,6 +8,14 @@ var bodyParser = require('body-parser');
 var hbs = require('express-handlebars');
 var hbshelpers = require('handlebars-helpers');
 var multihelpers = hbshelpers();
+
+dotenv.config();
+
+var mongoose = require('mongoose');
+var mongoDB = `mongodb+srv://${process.env.MONGODBUSER}:${process.env.MONGODBPW}@${process.env.MONGODBCLUSTER}/${process.env.MONGODBDB}?retryWrites=true&w=majority`;
+mongoose.connect(mongoDB, { useNewUrlParser: true , useUnifiedTopology: true});
+var db = mongoose.connection;
+db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 
 var index = require('./routes/index');
 var users = require('./routes/users');
