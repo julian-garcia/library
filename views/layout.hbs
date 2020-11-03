@@ -4,8 +4,33 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Local Library</title>
+  <link rel="stylesheet" href="/stylesheets/main.css">
 </head>
-<body>
-  {{{body}}}
+<body class="bg-teal-700">
+  <div class="library-container grid grid-cols-1 sm:grid-cols-12">
+    <div class="sidebar col-span-12 sm:col-span-3">
+      <ul>
+        <li class="sidebar__item bg-teal-200"><a href="/catalog">Home</a></li>
+        <li class="sidebar__item bg-teal-100"><a href="/catalog/books">Books</a></li>
+        <li class="sidebar__item bg-teal-100"><a href="/catalog/authors">Authors</a></li>
+        <li class="sidebar__item bg-teal-100"><a href="/catalog/genres">Genres</a></li>
+        <li class="sidebar__item bg-teal-100"><a href="/catalog/bookinstances">Stock</a></li>
+        <hr>
+        <li class="sidebar__item bg-teal-100"><a href="/catalog/book/create">New Book</a></li>
+        <li class="sidebar__item bg-teal-100"><a href="/catalog/author/create">New Author</a></li>
+        <li class="sidebar__item bg-teal-100"><a href="/catalog/genre/create">Add Genre</a></li>
+        <li class="sidebar__item bg-teal-100"><a href="/catalog/bookinstance/create">Add Stock</a></li>
+      </ul>
+    </div>
+    <div class="content col-span-12  sm:col-span-9 lg:col-span-6 bg-teal-100">
+      {{{body}}}
+      <p>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore architecto perferendis tempora quae aperiam sit
+        laboriosam atque assumenda voluptatem soluta, cumque nostrum et placeat illo hic non doloribus laborum nemo?
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Officia quis odio soluta dolorem, dolore molestias
+        dolores quasi cum animi perferendis. Corporis dolorum placeat labore veniam eos quaerat ad. Assumenda, possimus.
+      </p>
+    </div>
+  </div>
 </body>
 </html>
