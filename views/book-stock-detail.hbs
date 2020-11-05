@@ -1,0 +1,14 @@
+<h1 class="text-2xl font-bold leading-7 text-gray-900 sm:text-3xl sm:leading-9">{{title}}</h1>
+<hr>
+{{book_stock_detail.status}}
+{{#each book_stock_detail}}
+{{#each this.book}}
+{{#if title}}
+<p class="my-4"><strong>Title: </strong><a href="{{url _id 'book'}}">{{title}}</a></p>
+{{/if}}
+{{/each}}
+{{#if status}}<p class="my-4"><strong>Stock ID: </strong>{{_id}}</p>{{/if}}
+{{#if status}}<p class="my-4"><strong>Status: </strong>{{status}}</p>{{/if}}
+{{#if imprint}}<p class="my-4"><strong>Imprint: </strong>{{imprint}}</p>{{/if}}
+{{#if due_back}}<p class="my-4"><strong>Due: </strong>{{dateformat due_back}}</p>{{/if}}
+{{/each}}

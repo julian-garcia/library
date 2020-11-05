@@ -1,0 +1,16 @@
+<h1 class="text-2xl font-bold leading-7 text-gray-900 sm:text-3xl sm:leading-9 sm:truncate">{{title}}</h1>
+<hr>
+<ul>
+  {{#if no_books}}
+  <h2 class="text-xl my-4">{{no_books}}</h2>
+  {{else}}
+  {{#each genre_detail.books}}
+  <li class="my-4">
+    {{#each this}}
+    {{#if title}}<a href="{{url _id 'book'}}">{{title}}</a>{{/if}}
+    {{#if summary}}<p>{{summary}}</p>{{/if}}
+    {{/each}}
+  </li>
+  {{/each}}
+  {{/if}}
+</ul>

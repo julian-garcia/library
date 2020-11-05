@@ -14,7 +14,6 @@ exports.index = function(req, res) {
   },
   function(err, results) {
     console.log(err);
-    console.log(results);
     res.render('index', {title: 'Local Library', error: err, data: results});
   }
 )};
@@ -31,7 +30,20 @@ exports.book_list = function(req, res) {
 };
 
 exports.book_detail = function(req, res) {
-  res.send('NOT IMPLEMENTED: Book detail: ' + req.params.id);
+  async.parallel({
+    book: function(callback) { 
+            Book.findById(req.params.id)
+            .populate('author')
+            .populate('genre')
+            .exec(callback) },
+    stock: function(callback) { BookInstance.find({book: req.params.id}).exec(callback) },
+  },
+  function(err, results) {
+    if (err) { return next(err); }
+    res.render('book-detail', 
+               {title: results.book.title, error: err, book_detail: results});
+  }
+  );
 };
 
 exports.book_create_get = function(req, res) {

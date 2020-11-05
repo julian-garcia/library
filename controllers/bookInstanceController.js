@@ -14,7 +14,14 @@ exports.bookinstance_list = function(req, res) {
 };
 
 exports.bookinstance_detail = function(req, res) {
-  res.send('NOT IMPLEMENTED: BookInstance detail: ' + req.params.id);
+  BookInstance.findById(req.params.id)
+    .populate('book')
+    .exec(function (err, results) {
+      if (err) { return next(err); }
+      res.render('book-stock-detail', 
+                  { title: 'Stock for: ' + results.book.title, 
+                    book_stock_detail: results });
+    });
 };
 
 exports.bookinstance_create_get = function(req, res) {

@@ -1,0 +1,38 @@
+<h1 class="text-2xl font-bold leading-7 text-gray-900 sm:text-3xl sm:leading-9">{{title}}</h1>
+<hr>
+{{#each book_detail.book}}
+
+{{#each author}}
+{{#if first_name}}
+<p class="my-4">
+  <strong>Author: </strong>
+  <a href="{{url _id 'author'}}">{{family_name}}, {{first_name}}</a>
+</p>
+{{/if}}
+{{/each}}
+
+{{#if summary}}<p class="my-4"><strong>Summary: </strong>{{summary}}</p>{{/if}}
+{{#if isbn}}<p class="my-4"><strong>ISBN: </strong>{{isbn}}</p>{{/if}}
+
+{{#each genre}}
+{{#each this}}
+{{#if name}}
+<p class="my-4">
+  <strong>Genre: </strong><a href="{{url _id 'genre'}}">{{name}}</a>
+</p>
+{{/if}}
+{{/each}}
+{{/each}}
+
+{{/each}}
+
+{{#each book_detail.stock}}
+{{#each this}}
+{{#if status}}
+<p class="mt-4"><strong>Status: </strong>{{status}}</p>
+<p><strong>Imprint: </strong>{{imprint}}</p>
+<p><strong>Due: </strong>{{dateformat due_back}}</p>
+<p><strong>ID: </strong><a href="{{url _id 'bookinstance'}}">{{_id}}</a></p>
+{{/if}}
+{{/each}}
+{{/each}}
