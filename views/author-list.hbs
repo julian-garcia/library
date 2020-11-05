@@ -1,0 +1,13 @@
+<h1 class="text-2xl font-bold leading-7 text-gray-900 sm:text-3xl sm:leading-9 sm:truncate">{{title}}</h1>
+<hr>
+<ul>
+  {{#each author_list}}
+  <li class="my-4">
+    {{#each this}}
+    {{#if first_name}}
+    <a href="{{url _id 'author'}}">{{family_name}}, {{first_name}}</a>{{lifespan date_of_birth date_of_death}}
+    {{/if}}
+    {{/each}}
+  </li>
+  {{/each}}
+</ul>

@@ -3,8 +3,21 @@
 @tailwind utilities;
 
 @layer base {
+  a {
+    color: theme('colors.teal.900');
+  }
+  
+  .content a {
+    text-decoration: underline;
+  }
+
   .content {
-    @apply px-8 py-4; 
+    @apply px-8 py-4;
+    height: fit-content;
+  }
+
+  .sidebar {
+    @apply bg-teal-100;
   }
 
   .sidebar__item { 
@@ -12,6 +25,6 @@
   }
 
   .library-container {
-    @apply gap-4 bg-teal-700;
+    @apply gap-4 bg-teal-700 grid;
   }
 }

@@ -1,0 +1,11 @@
+<h1 class="text-2xl font-bold leading-7 text-gray-900 sm:text-3xl sm:leading-9 sm:truncate">{{title}}</h1>
+<hr>
+<ul>
+  {{#each genre_list}}
+  <li class="my-4">
+    {{#each this}}
+    <a href="{{url _id 'genre'}}">{{name}}</a>
+    {{/each}}
+  </li>
+  {{/each}}
+</ul>

@@ -586,11 +586,28 @@ video {
   height: auto;
 }
 
+a {
+  color: #234e52;
+}
+
+.content a {
+  text-decoration: underline;
+}
+
 .content {
   padding-left: 2rem;
   padding-right: 2rem;
   padding-top: 1rem;
   padding-bottom: 1rem;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+}
+
+.sidebar {
+  --bg-opacity: 1;
+  background-color: #e6fffa;
+  background-color: rgba(230, 255, 250, var(--bg-opacity));
 }
 
 .sidebar__item {
@@ -606,6 +623,7 @@ video {
   --bg-opacity: 1;
   background-color: #2c7a7b;
   background-color: rgba(44, 122, 123, var(--bg-opacity));
+  display: grid;
 }
 
 .container {

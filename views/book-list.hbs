@@ -1,0 +1,11 @@
+<h1 class="text-2xl font-bold leading-7 text-gray-900 sm:text-3xl sm:leading-9 sm:truncate">{{title}}</h1>
+<hr>
+<ul>
+  {{#each book_list}}
+  <li class="my-4">{{#each this}}
+    {{#if title}}{{#if _id}}<a href="{{url _id 'book'}}">{{title}}</a>,{{/if}}{{/if}}
+    {{#each author}} {{ first_name }} {{ family_name }} {{/each}}
+    {{/each}}
+  </li>
+  {{/each}}
+</ul>

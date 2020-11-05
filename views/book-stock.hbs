@@ -1,0 +1,14 @@
+<h1 class="text-2xl font-bold leading-7 text-gray-900 sm:text-3xl sm:leading-9 sm:truncate">{{title}}</h1>
+<hr>
+<ul>
+  {{#each book_stock}}
+  <li class="my-4">{{#each this}}
+    {{#if imprint}}
+    <a href="{{url _id 'bookinstance'}}">{{#each book}}{{title}}{{/each}}</a>,<br>
+    {{imprint}}<br>
+    {{status}} (Due on {{dateformat due_back}})
+    {{/if}}
+    {{/each}}
+  </li>
+  {{/each}}
+</ul>

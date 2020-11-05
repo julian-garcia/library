@@ -5,9 +5,11 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var handlebars = require('handlebars');
 var hbs = require('express-handlebars');
 var hbshelpers = require('handlebars-helpers');
 var multihelpers = hbshelpers();
+var { DateTime } = require('luxon');
 
 dotenv.config();
 
@@ -35,6 +37,21 @@ app.engine(
   })
 );
 app.set('view engine', 'hbs');
+
+handlebars.registerHelper('url', function(id, category) {
+  return '/catalog/' + category + '/' + id;
+});
+
+handlebars.registerHelper('dateformat', function(dt) {
+  return DateTime.fromJSDate(dt).toLocaleString(DateTime.DATE_MED_WITH_WEEKDAY);
+});
+
+handlebars.registerHelper('lifespan', function(birth, death) {
+  if (!birth) return;
+  const deathYear = death ? death.getFullYear() : new Date().getFullYear();
+  const deathString = death ? DateTime.fromJSDate(death).toFormat('MMMM yyyy') : 'present';
+  return ', ' + (deathYear - birth.getFullYear()) + ', ' + DateTime.fromJSDate(birth).toFormat('MMMM yyyy') + ' - ' + deathString;
+});
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));

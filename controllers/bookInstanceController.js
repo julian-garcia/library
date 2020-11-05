@@ -1,7 +1,16 @@
 var BookInstance = require('../models/bookinstance');
 
 exports.bookinstance_list = function(req, res) {
-    res.send('NOT IMPLEMENTED: BookInstance list');
+    BookInstance.find()
+      .populate('book')
+      .exec(function (err, results) {
+        if (err) { return next(err); }
+        res.render('book-stock', 
+                   { title: 'Book Stock', 
+                     book_stock: results
+                      .sort((a, b) => { return a.book.title.localeCompare(b.book.title) }) 
+                   });
+      });
 };
 
 exports.bookinstance_detail = function(req, res) {
