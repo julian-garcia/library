@@ -626,6 +626,10 @@ a {
   display: grid;
 }
 
+.dropdown {
+  max-width: 100%;
+}
+
 .container {
   width: 100%;
 }

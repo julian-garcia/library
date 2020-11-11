@@ -30,7 +30,7 @@ exports.genre_detail = function(req, res) {
 exports.genre_create_get = function(req, res) {
   res.render('create-form', {
     title: 'Create Genre',
-    fields: [{ name: 'name', label: 'Genre', default: ''}],
+    fields: [{ name: 'name', label: 'Genre', type: 'text', default: '' }],
     errors: []
   });
 };
@@ -43,7 +43,7 @@ exports.genre_create_post = [
     if (!errors.isEmpty()) {
       res.render('create-form', {
         title: 'Create Genre',
-        fields: [{ name: 'name', label: 'Genre', default: req.body.name }],
+        fields: [{ name: 'name', label: 'Genre', type: 'text', default: req.body.name }],
         errors: errors.array()
       });
       return;

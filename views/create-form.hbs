@@ -2,20 +2,54 @@
 <hr>
 
 <form class="w-full max-w-sm my-8" action="" method="post">
+  {{#each fields}}
   <div class="md:flex md:items-center mb-6">
-    {{#each fields}}
     <div class="md:w-1/3">
-      <label class="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4" for="{{this.name}}">
+      <label class="block text-gray-600 font-bold md:text-right mb-1 md:mb-0 pr-4" for="{{this.name}}">
         {{this.label}}
       </label>
     </div>
     <div class="md:w-2/3">
+      {{#if (eq this.type "text")}}
       <input
         class="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-teal-500"
-        id="{{this.name}}" type="text" value="{{this.default}}">
+        id="{{this.name}}" type="{{this.type}}" value="{{this.default}}" name="{{this.name}}">
+      {{/if}}
+      {{#if (eq this.type "date")}}
+      <input
+        class="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-teal-500"
+        id="{{this.name}}" type="{{this.type}}" value="{{this.default}}" name="{{this.name}}">
+      {{/if}}
+      {{#if (eq this.type "textarea")}}
+      <textarea
+        class="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-teal-500"
+        name="{{this.name}}" id="{{this.name}}" cols="30" rows="10">{{this.default}}</textarea>
+      {{/if}}
+      {{#if (eq this.type "select")}}
+      {{#if (eq this.name "status")}}
+      <select name="{{this.name}}" id="{{this.name}}" class="p-2 dropdown">
+        <option value=""></option>
+        {{#each this.content}}
+        <option value={{this}} {{#if (eq this ../this.default)}}selected{{/if}}>{{this}}</option>
+        {{/each}}
+      </select>
+      {{else}}
+      <select name="{{this.name}}" id="{{this.name}}" class="p-2 dropdown">
+        <option value=""></option>
+        {{#each this.content}}
+        {{#each this}}
+        {{#if first_name}}<option value={{_id}}>{{first_name}} {{family_name}}</option>{{/if}}
+        {{#if name}}<option value={{_id}}>{{name}}</option>{{/if}}
+        {{#if title}}<option value={{_id}} {{#if (is _id ../../this.default)}}selected{{/if}}>{{title}}</option>
+        {{/if}}
+        {{/each}}
+        {{/each}}
+      </select>
+      {{/if}}
+      {{/if}}
     </div>
-    {{/each}}
   </div>
+  {{/each}}
   <div class="md:flex md:items-center">
     <div class="md:w-1/3"></div>
     <div class="md:w-2/3">
@@ -29,7 +63,5 @@
 </form>
 
 <ul class="form-errors">
-  {{#each errors}}
-  <li>{{this.msg}}</li>
-  {{/each}}
+  {{#each errors}} <li class="text-red-700 font-bold text-lg">{{this.msg}}</li> {{/each}}
 </ul>

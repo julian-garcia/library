@@ -27,4 +27,8 @@
   .library-container {
     @apply gap-4 bg-teal-700 grid;
   }
+
+  .dropdown {
+    max-width: 100%;
+  }
 }
